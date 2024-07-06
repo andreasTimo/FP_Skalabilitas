@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-webapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sa-webapp
+  template:
+    metadata:
+      labels:
+        app: sa-webapp
+    spec:
+      containers:
+      - name: sa-webapp
+        image: andreast3/sentiment-analysis-web-app
+        env:
+        - name: SA_LOGIC_API_URL
+          value: "http://sa-logic-service:5000"
+        ports:
+        - containerPort: 8080
+      nodeSelector:
+        node-role.kubernetes.io/worker: worker
