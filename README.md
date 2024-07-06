@@ -206,4 +206,6 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 Berdasarkan proyek akhir ini, mendeploy aplikasi pada cluster Kubernetes multi-node terbukti menantang. Menghadapi beberapa kesulitan, seperti kebingungan dalam merancang arsitektur yang sesuai dan menentukan endpoint API yang efektif, seringkali mengharuskan saya untuk membuild ulang aplikasi. Selain itu, terdapat kendala dalam img pulling yang disebabkan oleh masalah koneksi internet. Karena itu, total traffic yang dapat ditangani sistem ini tanpa kegagalan belum dapat ditentukan. Meskipun membutuhkan load testing lebih lanjut, keterbatasan waktu dan kesulitan konfigurasi membuatnya sulit dilakukan saat ini. 
 
 
+
+
    
