@@ -17,6 +17,14 @@ Menggunakan 4 Nodes dibagi menjadi 1 Master dan 3 Worker
 ![FPSkala-Arsitektur Node drawio](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/157acf35-3fe1-4a3c-ba3e-a4db9da264d5)
 
 
+```
+Master: 10.15.40.67 : skalabilitas
+Worker:
+-10.15.40.55 : worker-node-3
+-10.15.40.59 : worker-node-4
+-10.15.40.64 : worker-node-2
+```
+
 #### Arsitektur Aplikasi
 Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
@@ -194,6 +202,8 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 ![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/6b6b7e00-69ed-4722-a268-adaebb560bf8)
 
 
+## Kesimpulan
+Berdasarkan proyek akhir ini, mendeploy aplikasi pada cluster Kubernetes multi-node terbukti menantang. Menghadapi beberapa kesulitan, seperti kebingungan dalam merancang arsitektur yang sesuai dan menentukan endpoint API yang efektif, seringkali mengharuskan saya untuk membuild ulang aplikasi. Selain itu, terdapat kendala dalam img pulling yang disebabkan oleh masalah koneksi internet. Karena itu, total traffic yang dapat ditangani sistem ini tanpa kegagalan belum dapat ditentukan. Meskipun membutuhkan load testing lebih lanjut, keterbatasan waktu dan kesulitan konfigurasi membuatnya sulit dilakukan saat ini. 
 
 
    
