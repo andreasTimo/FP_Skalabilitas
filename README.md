@@ -55,11 +55,13 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 5. **Apply semua service**
    Untuk mengetahui API, kita harus mengapply service dulu sebelum deployment.
 
-   Untuk []frontend , 
+   Untuk [frontend](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-frontend-service.yaml), [Webapp](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-webapp-service.yaml), [Logic](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-logic-service.yaml)
 
    Cek dengan `kubectl get svc`, jika berhasil output akan seperti ini:
+   ![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/07426b32-441d-423b-a9d5-e11bb4cd83a5)
 
-6. **Masukan API ke tiap-tiap aplikasi**
+
+7. **Masukan API ke tiap-tiap aplikasi**
    Ketika sudah dapat, bisa mengubah tiap-tiap aplikasi.
 
    Untuk frontend, ubah pada `/sa-frontend/src/App.js`:
@@ -80,7 +82,7 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
    Untuk logic, tidak ada yang perlu dirubah. Jangan lupa untuk dibuild dan dipush ke docker agar image dipakai pada deployment.
 
-7. **Deploy tiap aplikasi**
+8. **Deploy tiap aplikasi**
    Buat `sa-frontend-deployment.yaml` dan isi seperti dibawah ini:
    ```yaml
    apiVersion: apps/v1
@@ -154,7 +156,7 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
    Kalau berhasil cek dengan `kubectl get pods` dan `kubectl get deployment`.
 
-8. **Monitoring**
+9. **Monitoring**
    Untuk membuka Grafana dan Prometheus, kita harus mengubah `kube-prom-stack-grafana` dan `kube-prom-stack-kube-prome-prometheus` menjadi NodePort dengan command dibawah ini:
    ```bash
    kubectl patch svc kube-prom-stack-grafana -n observability --patch '{"spec": {"type": "NodePort"}}'
@@ -165,7 +167,7 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
    Lalu buka web dengan `<ipnodemaster>:<port yang tertera>`.
 
-9. **Grafana dan Prometheus**
+10. **Grafana dan Prometheus**
    Ketika masuk Grafana masukan username: `admin` dan password: `prom-operator`, lalu buka bagian `dashboard → browser`.
 
    Di sini secara otomatis terdeteksi. Jika ingin melihat resource tiap pods yang dipakai dalam tiap node ada di:
