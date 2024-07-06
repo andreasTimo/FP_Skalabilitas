@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-logic
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sa-logic
+  template:
+    metadata:
+      labels:
+        app: sa-logic
+    spec:
+      containers:
+      - name: sa-logic
+        image: rinormaloku/sentiment-analysis-logic
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: myregistrykey
+      nodeSelector:
+        node-role.kubernetes.io/worker: worker
