@@ -105,6 +105,7 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
            ports:
            - containerPort: 80
    ```
+[Frontend-Deployment](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-frontend-deplyoment.yaml)
 
    Buat `sa-webapp-deployment.yaml` dan isi seperti dibawah ini:
    ```yaml
@@ -128,6 +129,7 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
            ports:
            - containerPort: 8080
    ```
+[WebApp-Deployment](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-webapp-deployment.yaml)
 
    Dan terakhir buat `sa-logic-deployment.yaml`:
    ```yaml
@@ -151,10 +153,16 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
            ports:
            - containerPort: 5000
    ```
+[Logic-Deployment](https://github.com/andreasTimo/FP_Skalabilitas/blob/main/source/sa-logic-deployment.yaml)
 
    Apply dengan `kubectl apply -f <file yaml>`.
 
    Kalau berhasil cek dengan `kubectl get pods` dan `kubectl get deployment`.
+
+   
+   ![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/ee87e058-8a4c-4c16-9dcf-033dd027046c)
+
+
 
 9. **Monitoring**
    Untuk membuka Grafana dan Prometheus, kita harus mengubah `kube-prom-stack-grafana` dan `kube-prom-stack-kube-prome-prometheus` menjadi NodePort dengan command dibawah ini:
@@ -165,13 +173,27 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
    Lalu jika berhasil dicek dengan `kubectl get svc kube-prom-stack-kube-prome-prometheus -n observability`.
 
+   
+![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/c2c33ffa-1095-4076-9288-7e80876209bb)
+
+
    Lalu buka web dengan `<ipnodemaster>:<port yang tertera>`.
 
-10. **Grafana dan Prometheus**
+11. **Grafana dan Prometheus**
    Ketika masuk Grafana masukan username: `admin` dan password: `prom-operator`, lalu buka bagian `dashboard → browser`.
 
-   Di sini secara otomatis terdeteksi. Jika ingin melihat resource tiap pods yang dipakai dalam tiap node ada di:
-```
+![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/7225cc53-c9ac-448b-b143-9d0a86543727)
 
-Jika ada bagian yang masih kurang atau perlu penyesuaian, beri tahu saya!
+
+
+
+   Di sini secara otomatis terdeteksi. Jika ingin melihat resource tiap pods yang dipakai dalam tiap node ada di:
+
+![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/44dff5eb-3f1f-43eb-ad83-c6e06f46bd2c)
+
+![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/6b6b7e00-69ed-4722-a268-adaebb560bf8)
+
+
+
+
    
