@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-frontend
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sa-frontend
+  template:
+    metadata:
+      labels:
+        app: sa-frontend
+    spec:
+      containers:
+      - name: sa-frontend
+        image: andreast3/sentiment-analysis-frontend
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        node-role.kubernetes.io/worker: worker
+
+
+
