@@ -207,8 +207,31 @@ Service Aplikasi digunakan untuk menghubungkan ke 5 pods masing-masing tiap apps
 
 ![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/6b6b7e00-69ed-4722-a268-adaebb560bf8)
 
+12. **Load Testing**
+    dengan menggunakan konfigurasi seperti dibawah ini:
+```python
+from locust import HttpUser, task, between
 
-## Kesimpulan
+class SentimentAnalysisUser(HttpUser):
+    wait_time = between(1, 5)  # Random wait time between task executions
+
+    @task(1)
+    def analyze_sentiment(self):
+        # Make sure the endpoint and data structure are correct.
+        self.client.post("/sentiment", json={"text": "This is a test text for sentiment analysis."}, headers={"Content-Type": "application/json"})
+
+# The history task has been removed until the correct endpoint is confirmed.
+
+```
+jalankan dengan `locust -f locustfile.py --host http://10.15.40.67:30618`
+dengan hasil
+![image](https://github.com/andreasTimo/FP_Skalabilitas/assets/56831859/f52254e1-f4dc-49fa-a53e-9149e40eb7c4)
+
+Berdasarkan hasil terjadi failure 100% berarti ada kesalahan pada konfigurasi locust
+
+
+
+## Analisis dan Kesimpulan
 Berdasarkan proyek akhir ini, mendeploy aplikasi pada cluster Kubernetes multi-node terbukti menantang. Menghadapi beberapa kesulitan, seperti kebingungan dalam merancang arsitektur yang sesuai dan menentukan endpoint API yang efektif, seringkali mengharuskan saya untuk membuild ulang aplikasi. Selain itu, terdapat kendala dalam img pulling yang disebabkan oleh masalah koneksi internet. Karena itu, total traffic yang dapat ditangani sistem ini tanpa kegagalan belum dapat ditentukan. Meskipun membutuhkan load testing lebih lanjut, keterbatasan waktu dan kesulitan konfigurasi membuatnya sulit dilakukan saat ini. 
 
 
